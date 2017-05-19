@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('angularEx1')
+    .module('app.routes.home', [])
     .config(routerConfig);
 
   /** @ngInject */
@@ -12,9 +12,11 @@
         url: '/',
         templateUrl: 'app/states/home/home.html',
         controller: 'HomeController',
-        controllerAs: 'homeCtrl'
+        controllerAs: 'homeCtrl',
+        data: {
+          requiresLogin: false
+        }
       });
-
     $urlRouterProvider.otherwise('/');
   }
 

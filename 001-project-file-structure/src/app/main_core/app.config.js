@@ -2,13 +2,13 @@
   'use strict';
 
   angular
-    .module('angularEx1')
+    .module('app.config', [])
     .config(config);
 
   /** @ngInject */
   function config($logProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
-  }	
+  }
 
 })();

@@ -1,0 +1,25 @@
+ <md-content layout-padding="" class="loginPage">
+    <h2 class="title">Log In</h2>
+    <form name="loginForm" autocomplete="off" ng-submit="loginCtrl.logIn()" novalidate>
+      <div layout="column">
+	      <md-input-container flex="grow">
+	        <label>Username</label>
+	        <input required="" name="userName" ng-model="loginCtrl.user">
+	        <div ng-messages="loginForm.userName.$error">
+            	<div ng-message="required">This is required.</div>
+            </div>
+	      </md-input-container>
+	      <md-input-container flex="grow">
+	        <label>Password</label>
+	        <input required="" name="userPassword" ng-model="loginCtrl.password" type="password">
+	        <div ng-messages="loginForm.userPassword.$error">
+            	<div ng-message="required">This is required.</div>
+            </div>
+	      </md-input-container>
+	      <div flex="40" class="button">
+	      	<md-button type="submit" class="md-accent md-raised" >Log In</md-button>
+	      </div>
+      </div>
+    </form>
+ </md-content>
+
