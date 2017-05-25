@@ -3,16 +3,16 @@
 
   angular
     .module('angularEx1')
-    .controller('HomeController', HomeController);
+    .controller('HomeController', homeController);
 
   /** @ngInject */
-  function HomeController($log, SITE_NAME) {
+  function homeController($state, $log, SITE_NAME) {
     var vm = this;
     vm.mainTitle = SITE_NAME;
     vm.signUpToday = signUpToday;
 
     function signUpToday(){
-      $log.debug('signUpToday clicked!');
+      $state.go('login');
     }
 
   }

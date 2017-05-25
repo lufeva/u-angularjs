@@ -1,27 +1,23 @@
 # 001 - Project File Structure
 
-The Purpose of this example it's to understand how to set up a robust file structure for an Angular Project, [LIFT][1] principles:
+This project contains three views:
 
-* Locating our code is easy
-* Identify code at a glance
-* Flat structure as long as we can
-* Try to stay DRY (Don’t Repeat Yourself)
+* Home (which is the view by default)
+* Login (for this exercise the user and password is: user)
+* Dashboard (Only for authenticated users)
 
-For More information about Applications Structure [here][2]
+Additional to the views there is a service that carries on the account validation in the login controller.
 
-### To Do
-Perform the following in the current example:
-* Create a login page.
-* Create a Dashboard page after sign in up.
+To run this project is necessary the following dependencies:
 
-### Solution
+* npm install
+* bower install
 
-If you want to see the solution, click [here][3].
+This project uses Angular Materials for the main features in the layout and UI router as the manager for routes.
 
-### Next
-* [002 - States, views and params][4]
+The structure of the project was organized in the following way:
 
- [1]: http://bguiz.github.io/js-standards/angularjs/application-structure-lift-principle/
- [2]: https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#style-y150
- [3]: https://github.com/talosdigital/u-angularjs/tree/solved/001-projec-file-structure/001-project-file-structure#solution
- [4]: https://github.com/talosdigital/u-angularjs/tree/master/002-routing-params-views
+app
+* main_core: contains the main components, modules, and configurations that the application requires to work correctly
+* commons: contains the tools and features used by the states
+* states: these are the views of the app and the user interacts with
