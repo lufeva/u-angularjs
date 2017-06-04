@@ -10,7 +10,7 @@ The Purpose of this example it's to understand how to interact with servers in a
 ### To Do
 Perform the following in the current example:
 * Capture the map click [event][4], and get the [lat,lng].
-* Bring the [Weather][5], [UV][8] or [Pollution][9] of the location selected.
+* Bring the [Weather][5] or [UV][8] of the location selected.
 * Place a [marker][6] in the locaton selected.
 * Promp a modal using `$mdDialog` [service][7], to show the weather data.
 

@@ -7,9 +7,8 @@
 
   /** @ngInject */
   function AuthFactory() {
-    var vm = this;
-    vm.users = localStorage.getItem('userList') ? (JSON.parse(localStorage.getItem('userList'))) : [];
-    vm.factory = {
+    var users = localStorage.getItem('userList') ? (JSON.parse(localStorage.getItem('userList'))) : [],
+    factory = {
     	registerUser: registerUser,
     	logIn:logIn,
     	currentUser: currentUser
@@ -17,8 +16,8 @@
 
     function registerUser(newUser){
   		if(!searchUser(newUser.email)){
-  			vm.users.push(newUser);
-  			localStorage.setItem('userList', JSON.stringify(vm.users));
+  			users.push(newUser);
+  			localStorage.setItem('userList', JSON.stringify(users));
   			return true;
   		}else{
   			return false;
@@ -27,7 +26,7 @@
 
     function searchUser(key){
     	var found = false;
-    	vm.users.forEach(function(user) {
+    	users.forEach(function(user) {
     		if(user.email === key){
     			found = true;
     		}
@@ -37,7 +36,7 @@
 
     function validLogin(login) {
     	var valid = false;
-    	vm.users.forEach(function(user) {
+    	users.forEach(function(user) {
     		if(user.email === login.email && user.password === login.password){
     			valid = true;
     		}
@@ -56,7 +55,7 @@
 
     function currentUser() {
     	var current = null;
-    	vm.users.forEach(function(user) {
+    	users.forEach(function(user) {
     		if(user.email === localStorage.getItem('currentUser')){
     			current = user;
     		}
@@ -68,7 +67,7 @@
     	//...
     }
 
-    return vm.factory;
+    return factory;
 
   }
 })();
