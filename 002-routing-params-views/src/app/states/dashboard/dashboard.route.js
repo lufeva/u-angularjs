@@ -10,26 +10,82 @@
     $stateProvider
       .state('dashboard', {
         abstract: true,
-        template: 'app/states/dashboard/dashboard.html',
         url: '/dashboard',
+        views:{
+          'nav-bar@' : {
+            templateUrl: 'app/states/dashboard/nav-bar/nav-bar.html',
+            controller: 'NavBarCtrl',
+            controllerAs: 'navBarCtrl'
+          },
+          '@' : {
+            templateUrl: 'app/states/dashboard/dashboard.html',
+          }
+        },
+        data: {
+          requiresLogin: true
+        }
       })
-      .state('login', {
-      	parent: 'auth',
-      	url: '/login',
+      .state('main', {
+        parent: 'dashboard',
+        url: '/main',
+        views: {
+          'main-section@dashboard': {
+            templateUrl: 'app/states/dashboard/main/main.html',
+            controller: 'MainCtrl',
+            controllerAs: 'mainCtrl'
+          }
+        },
+        data: {
+          requiresLogin: true
+        },
+        resolve: {
+          /** @Inject*/
+          currentUser: function (Auth) {
+            return Auth.currentUser();
+          }
+        }
+      })
+      .state('details', {
+      	parent: 'dashboard',
+      	url: '/details',
         params: {
           currentUser: {}
         },
-        templateUrl: 'app/states/auth/login/login.html',
-        controller: 'AuthLoginController',
-        controllerAs: 'auLoginCtrl'
+        views: {
+          'main-section@dashboard': {
+            templateUrl: 'app/states/dashboard/details/details.html',
+            controller: 'DetailsCtrl',
+            controllerAs: 'detailsCtrl'
+          }
+        },
+        data: {
+          requiresLogin: true
+        }
       })
-       .state('signin', {
-      	parent: 'auth',
-      	url: '/signin',
-        templateUrl: 'app/states/auth/signin/signin.html',
-        controller: 'AuthSigninController',
-        controllerAs: 'auSigninCtrl'
-      });
+      .state('config', {
+        parent: 'dashboard',
+        url: '/config',
+        params: {
+          currentUser: {}
+        },
+        views: {
+          'main-section@dashboard': {
+            templateUrl: 'app/states/dashboard/config/config.html',
+            controller: 'ConfigCtrl',
+            controllerAs: 'configCtrl'
+          }
+        },
+        data: {
+          requiresLogin: true
+        },
+        resolve: {
+          /** @Inject*/
+          config: function ($http) {
+            return $http.get("app/states/dashboard/config/config.json").then(function(response) {
+              return response.data;
+            });
+          }
+        }
+      })
   }
-
 })();

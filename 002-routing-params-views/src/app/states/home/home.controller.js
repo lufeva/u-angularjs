@@ -15,5 +15,9 @@
       $state.go('signin');
     }
 
+    function logIn() {
+      $state.go('login');
+    }
+
   }
 })();
