@@ -11,8 +11,14 @@
     factory = {
     	registerUser: registerUser,
     	logIn:logIn,
-    	currentUser: currentUser
+    	currentUser: currentUser,
+      getUserList: getUserList,
+      logOut: logOut
     };
+
+    function getUserList() {
+      return users;
+    }
 
     function registerUser(newUser){
   		if(!searchUser(newUser.email)){
@@ -64,7 +70,7 @@
     }
 
     function logOut(user){
-    	//...
+    	localStorage.currentUser = undefined;
     }
 
     return factory;

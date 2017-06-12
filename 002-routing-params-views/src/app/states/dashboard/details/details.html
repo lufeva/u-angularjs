@@ -1,0 +1,17 @@
+<section class="main-section">
+	<h2>User Details</h2>
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th>Name</th>
+	      <th>Email</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr ng-repeat="user in detailsCtrl.userList" ng-class="{ 'table-info': detailsCtrl.currentUser.email == user.email }">
+	      <td>{{user.name}}</td>
+	      <td>{{user.email}}</td>
+	    </tr>
+	  </tbody>
+	</table>
+</section>
