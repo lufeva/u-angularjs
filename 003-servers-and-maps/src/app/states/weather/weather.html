@@ -6,9 +6,8 @@
 	    <md-radio-group ng-model="weatherCtrl.kind">
 	      <md-radio-button value="0" class="md-primary">Weather</md-radio-button>
 	      <md-radio-button value="1" class="md-primary">UV</md-radio-button>
-	      <md-radio-button value="2" class="md-primary">Pollution</md-radio-button>
 	    </md-radio-group>
 	    <!-- leaflet directive to include map -->
-	    <leaflet id="map" lf-center="center" event-broadcast="events" defaults="defaults"></leaflet>
+	    <leaflet id="map" lf-center="weatherCtrl.mapFeatures.center" event-broadcast="weatherCtrl.mapFeatures.events" defaults="weatherCtrl.mapFeatures.defaults" markers="weatherCtrl.mapFeatures.markers"></leaflet>
 	</div>
 </section>
