@@ -6,15 +6,11 @@
     .controller('WeatherController', WeatherController);
 
   /** @ngInject */
-  function WeatherController($http, $scope) {
+  function WeatherController($http, $scope, $mdDialog, WeatherService) {
     var vm = this;
 
-    //Talitos API Key
-    vm.apiKey = '534eccb946ce639dbb41f82b8be15dcc';
     vm.kind = '0';
-
-    //Should we extend or use vm?
-    angular.extend($scope, {
+    vm.mapFeatures = {
         center: {
             lat: 38.8225909761771,
             lng: -96.5478515625,
@@ -29,26 +25,64 @@
                 logic: 'emit'
             }
         }
-    });
+    };
 
-    $scope.$on('leafletDirectiveMap.map.click', function(event, args){
+    $scope.$on('leafletDirectiveMap.map.click', mapClick);
+
+
+    function mapClick (event, args) {
+
+        var latitude = args.leafletEvent.latlng.lat;
+        var longitude = args.leafletEvent.latlng.lng;
+        var main, description;
+
         if(vm.kind == '0'){
-            //Remember Services
-            $http({
-                method: 'GET',
-                url: 'http://api.openweathermap.org/data/2.5/home?APPID='+vm.apiKey+'&q=London'
-            }).then(function successCallback(response) {
-                alert(response.data.name); //Not a good practice 
-            }, function errorCallback(response) {
-                alert('Error');
-            });
-        }else if(vm.kind == '1'){
-            //http://api.openweathermap.org/v3/uvi/{lat},{lon}./current.json?appid={your-api-key}
-        }else if(vm.kind == '2'){
-            //http://api.openweathermap.org/pollution/v1/co/{location}/current.json?appid={api_key}
-        }
-    });
+            WeatherService.getWeather(latitude, longitude).then(function (response) {
+                main = response.weather[0].main;
+                description = response.weather[0].description;
 
+                placeMarker(latitude, longitude, main);
+                modalResult(('The weather is:'),description);
+            }, function (error) {
+                modalResult('Sorry', 'Not Data Found');
+            });
+
+        }else if(vm.kind == '1'){
+            WeatherService.getUV(latitude.toFixed(1), longitude.toFixed(1)).then(function (response) {
+                main = response.data;
+
+                placeMarker(latitude, longitude, main);
+                modalResult('The UV is:', main);
+            }, function (error) {
+                modalResult('Sorry', 'Not Data Found ');
+            });
+        }
+    }
+
+    function placeMarker (latitude, longitude, main) {
+        vm.mapFeatures.markers ={
+            mainMarker: {
+                lat: latitude,
+                lng: longitude,
+                message: main.toString(),
+                focus: true,
+                draggable: false
+            }
+        };
+    }
+
+
+    function modalResult (main,description) {
+        $mdDialog.show(
+          $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title(main)
+            .textContent(description)
+            .ariaLabel('Map App')
+            .ok('Got it!')
+        );
+    }
   }
 
 })();

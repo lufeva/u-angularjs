@@ -1,22 +1,15 @@
 # 003 - Servers and Maps
 
-The Purpose of this example it's to understand how to interact with servers in a real life application, we will work with a [Open Wheater API][1] to retrive our data, also a little introduction about [ui-leaflet][2] and [Angular Materials][3], and we are going to cover the following subjects: 
+This exercise was developed using ´Weather Application´ [Open Wheater API][1] to get the data, over the ´Map Application´ [ui-leaflet][2] and [Angular Materials][3] for the modal, putting in practice:
 
 *  Data Services and Factories
-* `$http` and `$resource`
-* `ui-leaflet`
-* `$mdDialog`
+* `$http`
 
-### To Do
-Perform the following in the current example:
-* Capture the map click [event][4], and get the [lat,lng].
-* Bring the [Weather][5] or [UV][8] of the location selected.
-* Place a [marker][6] in the locaton selected.
-* Promp a modal using `$mdDialog` [service][7], to show the weather data.
-
-### Solution
-
-You might noticed that the example it's not completed, that's part of the challenge figure out, don't forget the good practices!, if you already completed it, take a look of the solution, click [here][3].
+### What was Done
+* Capturing the map click [event][4], and getting the [lat,lng].
+* Bringing the [Weather][5] and [UV][8] of the location selected.
+* Putting in place a [marker][6] in the location selected.
+* Promping a modal using `$mdDialog` [service][7], to show the weather data.
 
 [1]:https://openweathermap.org/api
 [2]: http://angular-ui.github.io/ui-leaflet/#!/

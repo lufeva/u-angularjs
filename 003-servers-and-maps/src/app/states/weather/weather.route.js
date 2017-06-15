@@ -7,6 +7,14 @@
 
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('weather', {
+        url: '/',
+        templateUrl: 'app/states/weather/weather.html',
+        controller: 'WeatherController',
+        controllerAs: 'weatherCtrl'
+      });
+
     $urlRouterProvider.otherwise('/');
   }
 
