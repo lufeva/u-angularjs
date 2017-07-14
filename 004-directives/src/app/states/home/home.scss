@@ -1,5 +1,8 @@
 .home-view{
 	flex:1;
+	form {
+		margin-bottom: 26px;
+	}
 	.item {
 		margin: 18px 0;
 		label {
@@ -7,7 +10,28 @@
 			color: rgba(0,0,0,0.38);
 		}
 	}
-	.active {
-		background-color: rgba(158,158,158,0.2);
+	.buttons{
+		text-align: right;
+	}
+	.favorite-list{
+		.favorite-card{
+			width: 100%;
+			p {
+				display: inline-block;
+				outline: none;
+				width: 80%;
+				margin: 0;
+    			padding: 13px;
+			}
+			.icon {
+				outline: none;
+				display: inline-block;
+				width: 10%;
+				text-align: right;
+			}
+		}
+		.card-selected{
+			background-color: rgba(158,158,158,0.2);;
+		}
 	}
 }

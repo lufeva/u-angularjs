@@ -2,7 +2,7 @@
   <h1 class="md-display-2" layout-margin>Business Card</h1>
 
   <div layout="row" layout-align="center stretch">
-    <form name="vm.form" flex="50">
+    <form name="cardForm" flex="50">
       <md-content md-theme="docs-dark" layout-gt-sm="column" layout-padding>
         <div class="item">
           <label>Icon</label>
@@ -13,15 +13,44 @@
           </div>
         </div>
 
+        <md-input-container class="md-block">
+          <label>Title</label>
+          <input name="title" ng-model="homeCtrl.card.title">
+        </md-input-container>
+
         <div md-color-picker ng-model="homeCtrl.card.background" label="Background"></div>
 
         <div md-color-picker ng-model="homeCtrl.card.textColor" label="Text Color"></div>
+
+        <md-input-container class="md-block">
+          <label>Description</label>
+          <input name="description" ng-model="homeCtrl.card.description">
+        </md-input-container>
       </md-content>
+
+      <div class="buttons">
+        <md-button class="md-raised md-primary" ng-show="homeCtrl.indexCard !== undefined" aria-label="edit" ng-click="homeCtrl.editCard()">Edit</md-button>
+        <md-button class="md-raised md-warn" aria-label="clean" ng-click="homeCtrl.clearForm()">Clear</md-button>
+      </div>
     </form>
 
     <div flex="50">
       <md-subheader class="md-no-sticky">Card Directive</md-subheader>
+        <card icon="homeCtrl.card.icon"
+              background="homeCtrl.card.background"
+              text-color="homeCtrl.card.textColor"
+              title= "homeCtrl.card.title"
+              description="homeCtrl.card.description"
+              reservedBy="homeCtrl.RESERVED_BY"
+              favorite="homeCtrl.setFavorite(icon, title, description, textColor, background)">
+        </card>
       <md-subheader class="md-no-sticky">Favorite list</md-subheader>
+      <md-list-item class="favorite-list" ng-repeat="favorite in homeCtrl.favoriteList">
+        <div class="favorite-card" ng-class="{'card-selected' : homeCtrl.indexCard == $index}">
+          <p ng-click="homeCtrl.showFavorite(favorite, $index)" class="md-primary">{{favorite.title}}</p>
+          <md-icon class="icon" md-font-set="md" ng-click="homeCtrl.removeCard($index)">delete</md-icon>
+        </div>
+      </md-list-item>
     </div>
   </div>
 

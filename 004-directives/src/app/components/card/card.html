@@ -1,19 +1,24 @@
-<md-card ng-style="{'background-color': background, 'color' : textColor}">
-
+<md-card ng-style="{'background-color': cardCtrl.background, 'color' : cardCtrl.textColor}">
   <md-card-title>
     <md-card-title-text>
       <span class="md-headline">
-        <md-icon class="icon" ng-style="{'color' : textColor}" md-font-set="md" ng-show="icon">{{icon}}</md-icon>
-        {{title}}
+        <md-icon class="icon" ng-style="{'color' : textColor}" md-font-set="md" ng-show="cardCtrl.icon">{{cardCtrl.icon}}</md-icon>
+        {{cardCtrl.title}}
       </span>
     </md-card-title-text>
   </md-card-title>
   <md-card-content>
-    <p>{{description}}</p>
+    <p>{{cardCtrl.description}}</p>
   </md-card-content>
   <md-card-actions layout="row" layout-align="end center">
-    <span>{{reservedBy}}</span>
-    <md-button class="md-icon-button" aria-label="Favorite" ng-click="favorite({title: title})">
+    <span>{{cardCtrl.reservedBy}}</span>
+    <md-button class="md-icon-button" aria-label="Favorite" ng-click="cardCtrl.favorite({
+                icon: cardCtrl.icon,
+                title: cardCtrl.title,
+                textColor:cardCtrl.textColor,
+                description: cardCtrl.description,
+                background: cardCtrl.background
+              })">
       <md-icon md-font-set="md" ng-style="{'color' : textColor}">favorite</md-icon>
     </md-button>
   </md-card-actions>
