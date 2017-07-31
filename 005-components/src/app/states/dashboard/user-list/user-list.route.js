@@ -11,7 +11,7 @@
       .state('dashboard.userList', {
         url: '/user-list',
         views:{
-          'main': {
+          'main@': {
             controller: 'UserListController',
             templateUrl: 'app/states/dashboard/user-list/user-list.html',
             controllerAs: 'userListCtrl'
