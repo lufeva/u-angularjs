@@ -11,13 +11,18 @@
         vm.currentUser = $stateParams.currentUser;
         vm.goToDetail = goToDetailMethod;
         vm.goToConfig = goToConfigMethod;
+        vm.goToUserList = goToUserList;
 
         function goToDetailMethod() {
             $state.go('detail');
         }
 
         function goToConfigMethod() {
-            $state.go('detail');
+            $state.go('config');
+        }
+
+        function goToUserList() {
+            $state.go('dashboard.userList');
         }
     }
 })();

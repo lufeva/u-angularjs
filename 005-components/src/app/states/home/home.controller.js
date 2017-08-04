@@ -12,7 +12,11 @@
         vm.signUpToday = signUpToday;
 
         function signUpToday() {
-            $state.go('signup');
+            $state.go('signup').then(function(data){
+                console.log(data);
+            }, function(error){
+                console.error(error);
+            });
         }
     }
 })();
